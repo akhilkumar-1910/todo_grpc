@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+message Task{
+    int32 id = 1;
+    string task_todo = 2;
+    int32 status = 3;
+}
+
+message AllTasks{
+    repeated Task task=1;
+}
+
+message Empty{
+
+}
+
+service Todo{
+    rpc AddTask (Task) returns (Task) {}
+    rpc ListAllTasks (Empty) returns (AllTasks) {}
+    rpc EditTask (Task) returns (Task) {}
+    rpc RemoveTask (Task) returns (Task) {}
+    rpc UpdateStatus (Task) returns (Task) {}
+    rpc ListAllStream (Empty) returns (stream Task) {}
+}
