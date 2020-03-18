@@ -21,4 +21,5 @@ service Todo{
     rpc RemoveTask (Task) returns (Task) {}
     rpc UpdateStatus (Task) returns (Task) {}
     rpc ListAllStream (Empty) returns (stream Task) {}
+    rpc GetTask (Task) returns (Task) {}
 }

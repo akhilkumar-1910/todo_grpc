@@ -44,6 +44,11 @@ class TodoStub(object):
         request_serializer=todo__pb2.Empty.SerializeToString,
         response_deserializer=todo__pb2.Task.FromString,
         )
+    self.GetTask = channel.unary_unary(
+        '/Todo/GetTask',
+        request_serializer=todo__pb2.Task.SerializeToString,
+        response_deserializer=todo__pb2.Task.FromString,
+        )
 
 
 class TodoServicer(object):
@@ -92,6 +97,13 @@ class TodoServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetTask(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_TodoServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -123,6 +135,11 @@ def add_TodoServicer_to_server(servicer, server):
       'ListAllStream': grpc.unary_stream_rpc_method_handler(
           servicer.ListAllStream,
           request_deserializer=todo__pb2.Empty.FromString,
+          response_serializer=todo__pb2.Task.SerializeToString,
+      ),
+      'GetTask': grpc.unary_unary_rpc_method_handler(
+          servicer.GetTask,
+          request_deserializer=todo__pb2.Task.FromString,
           response_serializer=todo__pb2.Task.SerializeToString,
       ),
   }
