@@ -1,4 +1,4 @@
-import todo_pb2
+from proto import todo_pb2
 
 
 tasks = {}

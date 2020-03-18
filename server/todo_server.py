@@ -1,9 +1,6 @@
-from concurrent import futures
-import logging
-import grpc
-# import todo_pb2
-import todo_pb2_grpc
-from todo_server_fun import listalltasks, listallstream, gettask, addtask, edittask, deletetask
+# from proto import todo_pb2
+from proto import todo_pb2_grpc
+from .todo_server_fun import listalltasks, listallstream, gettask, addtask, edittask, deletetask
 
 
 class TodoServicer(todo_pb2_grpc.TodoServicer):
@@ -31,16 +28,3 @@ class TodoServicer(todo_pb2_grpc.TodoServicer):
     def RemoveTask(self, request, context):
         deletetask(request)
         return request
-
-
-def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    todo_pb2_grpc.add_TodoServicer_to_server(TodoServicer(), server)
-    server.add_insecure_port("[::]:50051")
-    server.start()
-    server.wait_for_termination()
-
-
-if __name__ == "__main__":
-    logging.basicConfig()
-    serve()

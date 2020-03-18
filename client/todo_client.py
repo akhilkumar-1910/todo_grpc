@@ -1,10 +1,9 @@
 from __future__ import print_function
-import logging
 import os
 import grpc
-# import todo_pb2
-import todo_pb2_grpc
-from todo_client_fun import listalltasks, addtask, edittask, deletetask
+# from proto import todo_pb2
+from proto import todo_pb2_grpc
+from .todo_client_fun import listalltasks, addtask, edittask, deletetask
 
 
 def run():
@@ -13,7 +12,7 @@ def run():
     # of the code.
     with grpc.insecure_channel("localhost:50051") as channel:
         stub = todo_pb2_grpc.TodoStub(channel)
-        while 1:
+        while True:
             os.system("clear")
             listalltasks(stub)
             print(
@@ -35,8 +34,3 @@ def run():
                 edittask(stub, option)
             else:
                 break
-
-
-if __name__ == "__main__":
-    logging.basicConfig()
-    run()
