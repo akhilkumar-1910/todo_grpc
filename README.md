@@ -10,5 +10,5 @@ A todo app in grpc with the following features:
 
 prerequisite: Add the project directory to the PYTHONPATH before running the server
 
-PYTHONPATH = "<path to project>:$PYTHONPATH"
+PYTHONPATH = "/path/to/project/directory/:$PYTHONPATH"
 export PYTHONPATH
