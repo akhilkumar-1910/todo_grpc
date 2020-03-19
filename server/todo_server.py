@@ -14,17 +14,17 @@ class TodoServicer(todo_pb2_grpc.TodoServicer):
             yield task
 
     def GetTask(self, request, context):
-        task = gettask(request)
+        task = gettask(request, context)
         return task
 
     def AddTask(self, request, context):
-        new_task = addtask(request)
+        new_task = addtask(request, context)
         return new_task
 
     def EditTask(self, request, context):
-        edited_task = edittask(request)
+        edited_task = edittask(request, context)
         return edited_task
 
     def RemoveTask(self, request, context):
-        removetask(request)
+        removetask(request, context)
         return request

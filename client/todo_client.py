@@ -14,7 +14,12 @@ def run():
         stub = todo_pb2_grpc.TodoStub(channel)
         while True:
             os.system("clear")
-            listalltasks(stub)
+            try:
+                listalltasks(stub)
+            except grpc.RpcError as e:
+                print(e.details())
+                print(e.code())
+                break
             print(
                 "\nCommand line todo application. Select one of the following options: "
             )
@@ -25,12 +30,27 @@ def run():
             print("5. Exit")
             option = input("\nPlease enter the option: ")
             if option == "1":
-                addtask(stub)
+                try:
+                    addtask(stub)
+                except grpc.RpcError as e:
+                    print(e.details())
             elif option == "2":
-                edittask(stub, option)
+                try:
+                    edittask(stub, option)
+                except grpc.RpcError as e:
+                    print(e.details())
             elif option == "3":
-                removetask(stub)
+                try:
+                    removetask(stub)
+                except grpc.RpcError as e:
+                    print(e.details())
             elif option == "4":
-                edittask(stub, option)
-            else:
+                try:
+                    edittask(stub, option)
+                except grpc.RpcError as e:
+                    print(e.details())
+            elif option == "5":
                 break
+            else:
+                print("Please enter a valid input")
+            input("Input enter to continue ...")

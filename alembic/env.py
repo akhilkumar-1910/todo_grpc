@@ -1,3 +1,5 @@
+import os
+
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -8,6 +10,13 @@ from models.todo_sqlalchemy import Base
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+# db
+section = config.config_ini_section
+config.set_section_option(section, "dbuser", os.environ.get("dbuser"))
+config.set_section_option(section, "dbpassword", os.environ.get("dbpassword"))
+config.set_section_option(section, "dbhost", os.environ.get("dbhost"))
+config.set_section_option(section, "dbname", os.environ.get("dbname"))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
