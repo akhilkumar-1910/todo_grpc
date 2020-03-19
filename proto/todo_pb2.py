@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x10proto/todo.proto\"5\n\x04Task\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\ttask_todo\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\x05\"\x1f\n\x08\x41llTasks\x12\x13\n\x04task\x18\x01 \x03(\x0b\x32\x05.Task\"\x07\n\x05\x45mpty2\xdf\x01\n\x04Todo\x12\x19\n\x07\x41\x64\x64Task\x12\x05.Task\x1a\x05.Task\"\x00\x12#\n\x0cListAllTasks\x12\x06.Empty\x1a\t.AllTasks\"\x00\x12\x1a\n\x08\x45\x64itTask\x12\x05.Task\x1a\x05.Task\"\x00\x12\x1c\n\nRemoveTask\x12\x05.Task\x1a\x05.Task\"\x00\x12\x1e\n\x0cUpdateStatus\x12\x05.Task\x1a\x05.Task\"\x00\x12\"\n\rListAllStream\x12\x06.Empty\x1a\x05.Task\"\x00\x30\x01\x12\x19\n\x07GetTask\x12\x05.Task\x1a\x05.Task\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x10proto/todo.proto\"5\n\x04Task\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\ttask_todo\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\x05\"\x1f\n\x08\x41llTasks\x12\x13\n\x04task\x18\x01 \x03(\x0b\x32\x05.Task\"\x07\n\x05\x45mpty2\xe1\x01\n\x04Todo\x12\x1a\n\x07\x41\x64\x64Task\x12\x05.Task\x1a\x06.Empty\"\x00\x12#\n\x0cListAllTasks\x12\x06.Empty\x1a\t.AllTasks\"\x00\x12\x1b\n\x08\x45\x64itTask\x12\x05.Task\x1a\x06.Empty\"\x00\x12\x1c\n\nRemoveTask\x12\x05.Task\x1a\x05.Task\"\x00\x12\x1e\n\x0cUpdateStatus\x12\x05.Task\x1a\x05.Task\"\x00\x12\"\n\rListAllStream\x12\x06.Empty\x1a\x05.Task\"\x00\x30\x01\x12\x19\n\x07GetTask\x12\x05.Task\x1a\x05.Task\"\x00\x62\x06proto3'
 )
 
 
@@ -159,7 +159,7 @@ _TODO = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=118,
-  serialized_end=341,
+  serialized_end=343,
   methods=[
   _descriptor.MethodDescriptor(
     name='AddTask',
@@ -167,7 +167,7 @@ _TODO = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_TASK,
-    output_type=_TASK,
+    output_type=_EMPTY,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -185,7 +185,7 @@ _TODO = _descriptor.ServiceDescriptor(
     index=2,
     containing_service=None,
     input_type=_TASK,
-    output_type=_TASK,
+    output_type=_EMPTY,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(

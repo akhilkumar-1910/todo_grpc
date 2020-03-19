@@ -17,7 +17,7 @@ class TodoStub(object):
     self.AddTask = channel.unary_unary(
         '/Todo/AddTask',
         request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.Task.FromString,
+        response_deserializer=proto_dot_todo__pb2.Empty.FromString,
         )
     self.ListAllTasks = channel.unary_unary(
         '/Todo/ListAllTasks',
@@ -27,7 +27,7 @@ class TodoStub(object):
     self.EditTask = channel.unary_unary(
         '/Todo/EditTask',
         request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.Task.FromString,
+        response_deserializer=proto_dot_todo__pb2.Empty.FromString,
         )
     self.RemoveTask = channel.unary_unary(
         '/Todo/RemoveTask',
@@ -110,7 +110,7 @@ def add_TodoServicer_to_server(servicer, server):
       'AddTask': grpc.unary_unary_rpc_method_handler(
           servicer.AddTask,
           request_deserializer=proto_dot_todo__pb2.Task.FromString,
-          response_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+          response_serializer=proto_dot_todo__pb2.Empty.SerializeToString,
       ),
       'ListAllTasks': grpc.unary_unary_rpc_method_handler(
           servicer.ListAllTasks,
@@ -120,7 +120,7 @@ def add_TodoServicer_to_server(servicer, server):
       'EditTask': grpc.unary_unary_rpc_method_handler(
           servicer.EditTask,
           request_deserializer=proto_dot_todo__pb2.Task.FromString,
-          response_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+          response_serializer=proto_dot_todo__pb2.Empty.SerializeToString,
       ),
       'RemoveTask': grpc.unary_unary_rpc_method_handler(
           servicer.RemoveTask,

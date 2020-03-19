@@ -4,14 +4,14 @@ from proto import todo_pb2
 def listalltasks(stub):
     print("Listing all todos: ")
     all_todos = stub.ListAllTasks(todo_pb2.Empty())
-    for p in all_todos.task:
+    for task in all_todos.task:
         print(
-            f"{p.id} {p.task_todo}, status: {p.status} (-1: not completed, 1: completed)"
+            f"{task.id} {task.task_todo}, status: {task.status} (-1: not completed, 1: completed)"
         )
     all_todos = stub.ListAllStream(todo_pb2.Empty())
-    for p in all_todos:
+    for task in all_todos:
         print(
-            f"{p.id} {p.task_todo}, status: {p.status} (-1: not completed, 1: completed)"
+            f"{task.id} {task.task_todo}, status: {task.status} (-1: not completed, 1: completed)"
         )
 
 
@@ -19,7 +19,7 @@ def addtask(stub):
     content = input("Please enter the task todo: ")
     task = todo_pb2.Task(task_todo=content)
     response = stub.AddTask(task)
-    print(f"{response.task_todo} added succesfully")
+    # print(f"{response.task_todo} added succesfully")
 
 
 def edittask(stub, option):
@@ -33,10 +33,10 @@ def edittask(stub, option):
         edit_status = input("1 for complete -1 for incomplete: ")
         task.status = int(edit_status)
     edit_task_response = stub.EditTask(task)
-    print(f"{edit_task_response.task_todo} updated succesfully")
+    # print(f"{edit_task_response.task_todo} updated succesfully")
 
 
-def deletetask(stub):
+def removetask(stub):
     del_id = input("Please enter the id of the task to delete: ")
     task = todo_pb2.Task(id=int(del_id))
     resp = stub.RemoveTask(task)

@@ -1,6 +1,6 @@
 # from proto import todo_pb2
 from proto import todo_pb2_grpc
-from .todo_server_fun import listalltasks, listallstream, gettask, addtask, edittask, deletetask
+from .todo_server_fun import listalltasks, listallstream, gettask, addtask, edittask, removetask
 
 
 class TodoServicer(todo_pb2_grpc.TodoServicer):
@@ -26,5 +26,5 @@ class TodoServicer(todo_pb2_grpc.TodoServicer):
         return edited_task
 
     def RemoveTask(self, request, context):
-        deletetask(request)
+        removetask(request)
         return request

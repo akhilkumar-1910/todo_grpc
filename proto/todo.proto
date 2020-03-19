@@ -15,9 +15,9 @@ message Empty{
 }
 
 service Todo{
-    rpc AddTask (Task) returns (Task) {}
+    rpc AddTask (Task) returns (Empty) {}
     rpc ListAllTasks (Empty) returns (AllTasks) {}
-    rpc EditTask (Task) returns (Task) {}
+    rpc EditTask (Task) returns (Empty) {}
     rpc RemoveTask (Task) returns (Task) {}
     rpc UpdateStatus (Task) returns (Task) {}
     rpc ListAllStream (Empty) returns (stream Task) {}

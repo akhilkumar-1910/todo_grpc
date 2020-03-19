@@ -3,7 +3,7 @@ import os
 import grpc
 # from proto import todo_pb2
 from proto import todo_pb2_grpc
-from .todo_client_fun import listalltasks, addtask, edittask, deletetask
+from .todo_client_fun import listalltasks, addtask, edittask, removetask
 
 
 def run():
@@ -29,7 +29,7 @@ def run():
             elif option == "2":
                 edittask(stub, option)
             elif option == "3":
-                deletetask(stub)
+                removetask(stub)
             elif option == "4":
                 edittask(stub, option)
             else:
