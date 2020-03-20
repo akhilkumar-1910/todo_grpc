@@ -16,9 +16,7 @@ def run():
             os.system("clear")
             try:
                 listalltasks(stub)
-            except grpc.RpcError as e:
-                print(e.details())
-                print(e.code())
+            except grpc.RpcError:
                 break
             print(
                 "\nCommand line todo application. Select one of the following options: "
@@ -30,25 +28,13 @@ def run():
             print("5. Exit")
             option = input("\nPlease enter the option: ")
             if option == "1":
-                try:
-                    addtask(stub)
-                except grpc.RpcError as e:
-                    print(e.details())
+                addtask(stub)
             elif option == "2":
-                try:
-                    edittask(stub, option)
-                except grpc.RpcError as e:
-                    print(e.details())
+                edittask(stub, option)
             elif option == "3":
-                try:
-                    removetask(stub)
-                except grpc.RpcError as e:
-                    print(e.details())
+                removetask(stub)
             elif option == "4":
-                try:
-                    edittask(stub, option)
-                except grpc.RpcError as e:
-                    print(e.details())
+                edittask(stub, option)
             elif option == "5":
                 break
             else:
