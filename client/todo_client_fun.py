@@ -8,7 +8,8 @@ def listalltasks(stub):
         print("Listing all todos: ")
         for task in all_todos.task:
             print(
-                f"{task.id} {task.task_todo}, status: {task.status} (-1: not completed, 1: completed)"
+                f"{task.id} {task.task_todo}, \
+                status: {task.status} (-1: not completed, 1: completed)"
             )
     except grpc.RpcError as e:
         if e.code() == grpc.StatusCode.UNAVAILABLE:
@@ -22,7 +23,8 @@ def listalltasks(stub):
         all_todos = stub.ListAllStream(todo_pb2.Empty())
         for task in all_todos:
             print(
-                f"{task.id} {task.task_todo}, status: {task.status} (-1: not completed, 1: completed)"
+                f"{task.id} {task.task_todo}, \
+                status: {task.status} (-1: not completed, 1: completed)"
             )
     except grpc.RpcError as e:
         if e.code() == grpc.StatusCode.UNAVAILABLE:
@@ -39,6 +41,7 @@ def addtask(stub):
     task = todo_pb2.Task(task_todo=content)
     try:
         response = stub.AddTask(task)
+        print(response)
     except grpc.RpcError as e:
         print(e.details())
 
@@ -56,6 +59,7 @@ def edittask(stub, option):
             task.status = int(edit_status)
         try:
             edit_task_response = stub.EditTask(task)
+            print(edit_task_response)
         except grpc.RpcError as e:
             print(e.details())
     except grpc.RpcError as e:

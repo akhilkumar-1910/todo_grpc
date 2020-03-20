@@ -1,6 +1,7 @@
 from __future__ import print_function
 import os
 import grpc
+
 # from proto import todo_pb2
 from proto import todo_pb2_grpc
 from .todo_client_fun import listalltasks, addtask, edittask, removetask
