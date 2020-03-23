@@ -5,9 +5,12 @@ from sqlalchemy import Column, Integer, String
 Base = declarative_base()
 
 
-class Task(Base):
-    __tablename__ = 'tasks'
+class Todo(Base):
+    __tablename__ = 'todos'
 
     id = Column(Integer, primary_key=True)
-    task_todo = Column(String(200))
+    content = Column(String(200))
     status = Column(Integer)
+
+    def __str__(self):
+        return f"{self.id}. {self.content}"

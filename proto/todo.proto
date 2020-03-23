@@ -1,25 +1,29 @@
 syntax = "proto3";
 
-message Task{
+message Todo{
     int32 id = 1;
-    string task_todo = 2;
-    int32 status = 3;
+    string content = 2;
+    enum Status{
+        COMPLETE = 0;
+        PENDING = 1;
+    }
+    Status status = 3;
 }
 
-message AllTasks{
-    repeated Task task=1;
+message AllTodos{
+    repeated Todo todo = 1;
 }
 
 message Empty{
 
 }
 
-service Todo{
-    rpc AddTask (Task) returns (Empty) {}
-    rpc ListAllTasks (Empty) returns (AllTasks) {}
-    rpc EditTask (Task) returns (Empty) {}
-    rpc RemoveTask (Task) returns (Task) {}
-    rpc UpdateStatus (Task) returns (Task) {}
-    rpc ListAllStream (Empty) returns (stream Task) {}
-    rpc GetTask (Task) returns (Task) {}
+service TodoApp{
+    rpc AddTodo (Todo) returns (Empty) {}
+    rpc ListAllTodos (Empty) returns (AllTodos) {}
+    rpc EditTodo (Todo) returns (Empty) {}
+    rpc RemoveTodo (Todo) returns (Todo) {}
+    rpc UpdateStatus (Todo) returns (Todo) {}
+    rpc ListAllStream (Empty) returns (stream Todo) {}
+    rpc GetTodo (Todo) returns (Todo) {}
 }

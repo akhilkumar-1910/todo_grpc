@@ -4,7 +4,7 @@ import grpc
 from proto import todo_pb2 as proto_dot_todo__pb2
 
 
-class TodoStub(object):
+class TodoAppStub(object):
   # missing associated documentation comment in .proto file
   pass
 
@@ -14,69 +14,69 @@ class TodoStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.AddTask = channel.unary_unary(
-        '/Todo/AddTask',
-        request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+    self.AddTodo = channel.unary_unary(
+        '/TodoApp/AddTodo',
+        request_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
         response_deserializer=proto_dot_todo__pb2.Empty.FromString,
         )
-    self.ListAllTasks = channel.unary_unary(
-        '/Todo/ListAllTasks',
+    self.ListAllTodos = channel.unary_unary(
+        '/TodoApp/ListAllTodos',
         request_serializer=proto_dot_todo__pb2.Empty.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.AllTasks.FromString,
+        response_deserializer=proto_dot_todo__pb2.AllTodos.FromString,
         )
-    self.EditTask = channel.unary_unary(
-        '/Todo/EditTask',
-        request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+    self.EditTodo = channel.unary_unary(
+        '/TodoApp/EditTodo',
+        request_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
         response_deserializer=proto_dot_todo__pb2.Empty.FromString,
         )
-    self.RemoveTask = channel.unary_unary(
-        '/Todo/RemoveTask',
-        request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.Task.FromString,
+    self.RemoveTodo = channel.unary_unary(
+        '/TodoApp/RemoveTodo',
+        request_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
+        response_deserializer=proto_dot_todo__pb2.Todo.FromString,
         )
     self.UpdateStatus = channel.unary_unary(
-        '/Todo/UpdateStatus',
-        request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.Task.FromString,
+        '/TodoApp/UpdateStatus',
+        request_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
+        response_deserializer=proto_dot_todo__pb2.Todo.FromString,
         )
     self.ListAllStream = channel.unary_stream(
-        '/Todo/ListAllStream',
+        '/TodoApp/ListAllStream',
         request_serializer=proto_dot_todo__pb2.Empty.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.Task.FromString,
+        response_deserializer=proto_dot_todo__pb2.Todo.FromString,
         )
-    self.GetTask = channel.unary_unary(
-        '/Todo/GetTask',
-        request_serializer=proto_dot_todo__pb2.Task.SerializeToString,
-        response_deserializer=proto_dot_todo__pb2.Task.FromString,
+    self.GetTodo = channel.unary_unary(
+        '/TodoApp/GetTodo',
+        request_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
+        response_deserializer=proto_dot_todo__pb2.Todo.FromString,
         )
 
 
-class TodoServicer(object):
+class TodoAppServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
-  def AddTask(self, request, context):
+  def AddTodo(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def ListAllTasks(self, request, context):
+  def ListAllTodos(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def EditTask(self, request, context):
+  def EditTodo(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def RemoveTask(self, request, context):
+  def RemoveTodo(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -97,7 +97,7 @@ class TodoServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def GetTask(self, request, context):
+  def GetTodo(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -105,44 +105,44 @@ class TodoServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_TodoServicer_to_server(servicer, server):
+def add_TodoAppServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'AddTask': grpc.unary_unary_rpc_method_handler(
-          servicer.AddTask,
-          request_deserializer=proto_dot_todo__pb2.Task.FromString,
+      'AddTodo': grpc.unary_unary_rpc_method_handler(
+          servicer.AddTodo,
+          request_deserializer=proto_dot_todo__pb2.Todo.FromString,
           response_serializer=proto_dot_todo__pb2.Empty.SerializeToString,
       ),
-      'ListAllTasks': grpc.unary_unary_rpc_method_handler(
-          servicer.ListAllTasks,
+      'ListAllTodos': grpc.unary_unary_rpc_method_handler(
+          servicer.ListAllTodos,
           request_deserializer=proto_dot_todo__pb2.Empty.FromString,
-          response_serializer=proto_dot_todo__pb2.AllTasks.SerializeToString,
+          response_serializer=proto_dot_todo__pb2.AllTodos.SerializeToString,
       ),
-      'EditTask': grpc.unary_unary_rpc_method_handler(
-          servicer.EditTask,
-          request_deserializer=proto_dot_todo__pb2.Task.FromString,
+      'EditTodo': grpc.unary_unary_rpc_method_handler(
+          servicer.EditTodo,
+          request_deserializer=proto_dot_todo__pb2.Todo.FromString,
           response_serializer=proto_dot_todo__pb2.Empty.SerializeToString,
       ),
-      'RemoveTask': grpc.unary_unary_rpc_method_handler(
-          servicer.RemoveTask,
-          request_deserializer=proto_dot_todo__pb2.Task.FromString,
-          response_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+      'RemoveTodo': grpc.unary_unary_rpc_method_handler(
+          servicer.RemoveTodo,
+          request_deserializer=proto_dot_todo__pb2.Todo.FromString,
+          response_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
       ),
       'UpdateStatus': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateStatus,
-          request_deserializer=proto_dot_todo__pb2.Task.FromString,
-          response_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+          request_deserializer=proto_dot_todo__pb2.Todo.FromString,
+          response_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
       ),
       'ListAllStream': grpc.unary_stream_rpc_method_handler(
           servicer.ListAllStream,
           request_deserializer=proto_dot_todo__pb2.Empty.FromString,
-          response_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+          response_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
       ),
-      'GetTask': grpc.unary_unary_rpc_method_handler(
-          servicer.GetTask,
-          request_deserializer=proto_dot_todo__pb2.Task.FromString,
-          response_serializer=proto_dot_todo__pb2.Task.SerializeToString,
+      'GetTodo': grpc.unary_unary_rpc_method_handler(
+          servicer.GetTodo,
+          request_deserializer=proto_dot_todo__pb2.Todo.FromString,
+          response_serializer=proto_dot_todo__pb2.Todo.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'Todo', rpc_method_handlers)
+      'TodoApp', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

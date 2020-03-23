@@ -2,14 +2,13 @@ from proto import todo_pb2
 import grpc
 
 
-def listalltasks(stub):
+def list_all_todos(stub):
     try:
-        all_todos = stub.ListAllTasks(todo_pb2.Empty())
+        all_todos = stub.ListAllTodos(todo_pb2.Empty())
         print("Listing all todos: ")
-        for task in all_todos.task:
+        for todo in all_todos.todo:
             print(
-                f"{task.id} {task.task_todo}, \
-                status: {task.status} (-1: not completed, 1: completed)"
+                f"{todo.id} {todo.content}, status: {todo.status} (0: not completed, 1: completed)"
             )
     except grpc.RpcError as e:
         if e.code() == grpc.StatusCode.UNAVAILABLE:
@@ -21,10 +20,9 @@ def listalltasks(stub):
             raise e
     try:
         all_todos = stub.ListAllStream(todo_pb2.Empty())
-        for task in all_todos:
+        for todo in all_todos:
             print(
-                f"{task.id} {task.task_todo}, \
-                status: {task.status} (-1: not completed, 1: completed)"
+                f"{todo.id} {todo.content}, status: {todo.status} (0: not completed, 1: completed)"
             )
     except grpc.RpcError as e:
         if e.code() == grpc.StatusCode.UNAVAILABLE:
@@ -36,41 +34,41 @@ def listalltasks(stub):
             raise e
 
 
-def addtask(stub):
+def add_todo(stub):
     content = input("Please enter the task todo: ")
-    task = todo_pb2.Task(task_todo=content)
+    todo = todo_pb2.Todo(content=content)
     try:
-        response = stub.AddTask(task)
+        response = stub.AddTodo(todo)
         print(response)
     except grpc.RpcError as e:
         print(e.details())
 
 
-def edittask(stub, option):
-    edit_id = input("Please enter the id of the task to edit: ")
-    task = todo_pb2.Task(id=int(edit_id))
+def edit_todo(stub, option):
+    edit_id = input("Please enter the id of the todo to edit: ")
+    todo = todo_pb2.Todo(id=int(edit_id))
     try:
-        task = stub.GetTask(task)
+        todo = stub.GetTodo(todo)
         if option == "2":
-            edit_content = input("Please enter the content of new task: ")
-            task.task_todo = edit_content
+            edit_content = input("Please enter the new content for todo: ")
+            todo.content = edit_content
         else:
-            edit_status = input("1 for complete -1 for incomplete: ")
-            task.status = int(edit_status)
+            edit_status = input("1 for complete 0 for incomplete: ")
+            todo.status = int(edit_status)
         try:
-            edit_task_response = stub.EditTask(task)
-            print(edit_task_response)
+            edit_todo_response = stub.EditTodo(todo)
+            print(edit_todo_response)
         except grpc.RpcError as e:
             print(e.details())
     except grpc.RpcError as e:
         print(e.details())
 
 
-def removetask(stub):
+def remove_todo(stub):
     del_id = input("Please enter the id of the task to delete: ")
-    task = todo_pb2.Task(id=int(del_id))
+    todo = todo_pb2.Todo(id=int(del_id))
     try:
-        resp = stub.RemoveTask(task)
+        resp = stub.RemoveTodo(todo)
         print(f"{resp.id} removed succesfully")
     except grpc.RpcError as e:
         print(e.details())

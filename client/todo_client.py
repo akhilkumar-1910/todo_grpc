@@ -4,7 +4,7 @@ import grpc
 
 # from proto import todo_pb2
 from proto import todo_pb2_grpc
-from .todo_client_fun import listalltasks, addtask, edittask, removetask
+from .helpers import list_all_todos, add_todo, edit_todo, remove_todo
 
 
 def run():
@@ -12,11 +12,11 @@ def run():
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
     with grpc.insecure_channel("localhost:50051") as channel:
-        stub = todo_pb2_grpc.TodoStub(channel)
+        stub = todo_pb2_grpc.TodoAppStub(channel)
         while True:
             os.system("clear")
             try:
-                listalltasks(stub)
+                list_all_todos(stub)
             except grpc.RpcError:
                 break
             print(
@@ -29,13 +29,13 @@ def run():
             print("5. Exit")
             option = input("\nPlease enter the option: ")
             if option == "1":
-                addtask(stub)
+                add_todo(stub)
             elif option == "2":
-                edittask(stub, option)
+                edit_todo(stub, option)
             elif option == "3":
-                removetask(stub)
+                remove_todo(stub)
             elif option == "4":
-                edittask(stub, option)
+                edit_todo(stub, option)
             elif option == "5":
                 break
             else:

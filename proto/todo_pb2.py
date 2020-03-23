@@ -18,36 +18,58 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x10proto/todo.proto\"5\n\x04Task\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\ttask_todo\x18\x02 \x01(\t\x12\x0e\n\x06status\x18\x03 \x01(\x05\"\x1f\n\x08\x41llTasks\x12\x13\n\x04task\x18\x01 \x03(\x0b\x32\x05.Task\"\x07\n\x05\x45mpty2\xe1\x01\n\x04Todo\x12\x1a\n\x07\x41\x64\x64Task\x12\x05.Task\x1a\x06.Empty\"\x00\x12#\n\x0cListAllTasks\x12\x06.Empty\x1a\t.AllTasks\"\x00\x12\x1b\n\x08\x45\x64itTask\x12\x05.Task\x1a\x06.Empty\"\x00\x12\x1c\n\nRemoveTask\x12\x05.Task\x1a\x05.Task\"\x00\x12\x1e\n\x0cUpdateStatus\x12\x05.Task\x1a\x05.Task\"\x00\x12\"\n\rListAllStream\x12\x06.Empty\x1a\x05.Task\"\x00\x30\x01\x12\x19\n\x07GetTask\x12\x05.Task\x1a\x05.Task\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x10proto/todo.proto\"f\n\x04Todo\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\t\x12\x1c\n\x06status\x18\x03 \x01(\x0e\x32\x0c.Todo.Status\"#\n\x06Status\x12\x0c\n\x08\x43OMPLETE\x10\x00\x12\x0b\n\x07PENDING\x10\x01\"\x1f\n\x08\x41llTodos\x12\x13\n\x04todo\x18\x01 \x03(\x0b\x32\x05.Todo\"\x07\n\x05\x45mpty2\xe4\x01\n\x07TodoApp\x12\x1a\n\x07\x41\x64\x64Todo\x12\x05.Todo\x1a\x06.Empty\"\x00\x12#\n\x0cListAllTodos\x12\x06.Empty\x1a\t.AllTodos\"\x00\x12\x1b\n\x08\x45\x64itTodo\x12\x05.Todo\x1a\x06.Empty\"\x00\x12\x1c\n\nRemoveTodo\x12\x05.Todo\x1a\x05.Todo\"\x00\x12\x1e\n\x0cUpdateStatus\x12\x05.Todo\x1a\x05.Todo\"\x00\x12\"\n\rListAllStream\x12\x06.Empty\x1a\x05.Todo\"\x00\x30\x01\x12\x19\n\x07GetTodo\x12\x05.Todo\x1a\x05.Todo\"\x00\x62\x06proto3'
 )
 
 
 
+_TODO_STATUS = _descriptor.EnumDescriptor(
+  name='Status',
+  full_name='Todo.Status',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='COMPLETE', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='PENDING', index=1, number=1,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=87,
+  serialized_end=122,
+)
+_sym_db.RegisterEnumDescriptor(_TODO_STATUS)
 
-_TASK = _descriptor.Descriptor(
-  name='Task',
-  full_name='Task',
+
+_TODO = _descriptor.Descriptor(
+  name='Todo',
+  full_name='Todo',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='Task.id', index=0,
+      name='id', full_name='Todo.id', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='task_todo', full_name='Task.task_todo', index=1,
+      name='content', full_name='Todo.content', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='status', full_name='Task.status', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      name='status', full_name='Todo.status', index=2,
+      number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -57,6 +79,7 @@ _TASK = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _TODO_STATUS,
   ],
   serialized_options=None,
   is_extendable=False,
@@ -65,19 +88,19 @@ _TASK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=20,
-  serialized_end=73,
+  serialized_end=122,
 )
 
 
-_ALLTASKS = _descriptor.Descriptor(
-  name='AllTasks',
-  full_name='AllTasks',
+_ALLTODOS = _descriptor.Descriptor(
+  name='AllTodos',
+  full_name='AllTodos',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='task', full_name='AllTasks.task', index=0,
+      name='todo', full_name='AllTodos.todo', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -95,8 +118,8 @@ _ALLTASKS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=75,
-  serialized_end=106,
+  serialized_start=124,
+  serialized_end=155,
 )
 
 
@@ -119,29 +142,31 @@ _EMPTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=108,
-  serialized_end=115,
+  serialized_start=157,
+  serialized_end=164,
 )
 
-_ALLTASKS.fields_by_name['task'].message_type = _TASK
-DESCRIPTOR.message_types_by_name['Task'] = _TASK
-DESCRIPTOR.message_types_by_name['AllTasks'] = _ALLTASKS
+_TODO.fields_by_name['status'].enum_type = _TODO_STATUS
+_TODO_STATUS.containing_type = _TODO
+_ALLTODOS.fields_by_name['todo'].message_type = _TODO
+DESCRIPTOR.message_types_by_name['Todo'] = _TODO
+DESCRIPTOR.message_types_by_name['AllTodos'] = _ALLTODOS
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Task = _reflection.GeneratedProtocolMessageType('Task', (_message.Message,), {
-  'DESCRIPTOR' : _TASK,
+Todo = _reflection.GeneratedProtocolMessageType('Todo', (_message.Message,), {
+  'DESCRIPTOR' : _TODO,
   '__module__' : 'proto.todo_pb2'
-  # @@protoc_insertion_point(class_scope:Task)
+  # @@protoc_insertion_point(class_scope:Todo)
   })
-_sym_db.RegisterMessage(Task)
+_sym_db.RegisterMessage(Todo)
 
-AllTasks = _reflection.GeneratedProtocolMessageType('AllTasks', (_message.Message,), {
-  'DESCRIPTOR' : _ALLTASKS,
+AllTodos = _reflection.GeneratedProtocolMessageType('AllTodos', (_message.Message,), {
+  'DESCRIPTOR' : _ALLTODOS,
   '__module__' : 'proto.todo_pb2'
-  # @@protoc_insertion_point(class_scope:AllTasks)
+  # @@protoc_insertion_point(class_scope:AllTodos)
   })
-_sym_db.RegisterMessage(AllTasks)
+_sym_db.RegisterMessage(AllTodos)
 
 Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
   'DESCRIPTOR' : _EMPTY,
@@ -152,81 +177,81 @@ _sym_db.RegisterMessage(Empty)
 
 
 
-_TODO = _descriptor.ServiceDescriptor(
-  name='Todo',
-  full_name='Todo',
+_TODOAPP = _descriptor.ServiceDescriptor(
+  name='TodoApp',
+  full_name='TodoApp',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=118,
-  serialized_end=343,
+  serialized_start=167,
+  serialized_end=395,
   methods=[
   _descriptor.MethodDescriptor(
-    name='AddTask',
-    full_name='Todo.AddTask',
+    name='AddTodo',
+    full_name='TodoApp.AddTodo',
     index=0,
     containing_service=None,
-    input_type=_TASK,
+    input_type=_TODO,
     output_type=_EMPTY,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='ListAllTasks',
-    full_name='Todo.ListAllTasks',
+    name='ListAllTodos',
+    full_name='TodoApp.ListAllTodos',
     index=1,
     containing_service=None,
     input_type=_EMPTY,
-    output_type=_ALLTASKS,
+    output_type=_ALLTODOS,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='EditTask',
-    full_name='Todo.EditTask',
+    name='EditTodo',
+    full_name='TodoApp.EditTodo',
     index=2,
     containing_service=None,
-    input_type=_TASK,
+    input_type=_TODO,
     output_type=_EMPTY,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='RemoveTask',
-    full_name='Todo.RemoveTask',
+    name='RemoveTodo',
+    full_name='TodoApp.RemoveTodo',
     index=3,
     containing_service=None,
-    input_type=_TASK,
-    output_type=_TASK,
+    input_type=_TODO,
+    output_type=_TODO,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
     name='UpdateStatus',
-    full_name='Todo.UpdateStatus',
+    full_name='TodoApp.UpdateStatus',
     index=4,
     containing_service=None,
-    input_type=_TASK,
-    output_type=_TASK,
+    input_type=_TODO,
+    output_type=_TODO,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
     name='ListAllStream',
-    full_name='Todo.ListAllStream',
+    full_name='TodoApp.ListAllStream',
     index=5,
     containing_service=None,
     input_type=_EMPTY,
-    output_type=_TASK,
+    output_type=_TODO,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='GetTask',
-    full_name='Todo.GetTask',
+    name='GetTodo',
+    full_name='TodoApp.GetTodo',
     index=6,
     containing_service=None,
-    input_type=_TASK,
-    output_type=_TASK,
+    input_type=_TODO,
+    output_type=_TODO,
     serialized_options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_TODO)
+_sym_db.RegisterServiceDescriptor(_TODOAPP)
 
-DESCRIPTOR.services_by_name['Todo'] = _TODO
+DESCRIPTOR.services_by_name['TodoApp'] = _TODOAPP
 
 # @@protoc_insertion_point(module_scope)
