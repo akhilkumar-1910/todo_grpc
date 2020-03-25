@@ -1,5 +1,9 @@
 from . import todo_stub
 
+"""
+Helper functions for the client.py
+"""
+
 
 def list_all_todos(stub):
     todo_stub.list_all_todos(stub)

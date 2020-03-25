@@ -3,6 +3,20 @@ import grpc
 
 
 def list_all_todos(stub):
+    """
+    Lists all the todos in the database by calling the server side function and printing them to
+    the console.
+
+    Args:
+        stub: a grpc stub
+
+    Returns:
+        None
+
+    Raises:
+        grpc.RpcError:
+            If server is unavailable
+    """
     try:
         all_todos = stub.ListAllTodos(todo_pb2.Empty())
         print("Listing all todos: ")
@@ -35,6 +49,18 @@ def list_all_todos(stub):
 
 
 def add_todo(stub):
+    """
+    Add a todo to the database
+
+    Args:
+        stub: a grpc stub
+
+    Returns:
+        todo_pb2.Todo object
+
+    Raises:
+        grpc.RpcError: If content is more than 200 characters
+    """
     content = input("Please enter the task todo: ")
     todo = todo_pb2.Todo(content=content)
     try:
@@ -45,6 +71,21 @@ def add_todo(stub):
 
 
 def edit_todo(stub, option):
+    """
+    Edits an existing todo
+
+    Args:
+        stub: grpc stub
+        option(str): Option to choose between editing content and status
+
+    Returns:
+        todo_pb2.Todo object
+
+    Raises:
+        grpc.RpcError:
+            If content is more than 200 characters
+            If id entered is not present in database
+    """
     edit_id = input("Please enter the id of the todo to edit: ")
     todo = todo_pb2.Todo(id=int(edit_id))
     try:
@@ -65,6 +106,19 @@ def edit_todo(stub, option):
 
 
 def remove_todo(stub):
+    """
+    Removes an existing todo
+
+    Args:
+        stub: grpc stub
+        option(str): Option to choose between editing content and status
+
+    Returns:
+        todo_pb2.Todo object
+
+    Raises:
+        grpc.RpcError: If id entered is not present in database
+    """
     del_id = input("Please enter the id of the task to delete: ")
     todo = todo_pb2.Todo(id=int(del_id))
     try:

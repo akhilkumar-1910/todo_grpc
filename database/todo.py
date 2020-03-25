@@ -17,6 +17,15 @@ session = Session()
 
 
 def list_all_todos():
+    """
+    Lists all the todos from the databases
+
+    Args:
+        No args
+
+    Returns:
+        all_todos: A todo_pb2.AllTodos object
+    """
     all_todos = todo_pb2.AllTodos()
     todos = session.query(Todo).order_by(Todo.id).all()
     for todo in todos:
@@ -27,6 +36,15 @@ def list_all_todos():
 
 
 def list_all_stream():
+    """
+    Lists all the todos from the databases
+
+    Args:
+        No args
+
+    Returns:
+        all_todos(list): A list of todo_pb2.Todo objects
+    """
     todos = session.query(Todo).order_by(Todo.id)
     all_todos = []
     for todo in todos:
@@ -37,6 +55,20 @@ def list_all_stream():
 
 
 def get_todo(request, context):
+    """
+    Lists a todo based on the id of the todo
+
+    Args:
+        request(todo_pb2.Todo object): for getting id
+        context(grpc.ServicerContext): for setting error code and details
+
+    Returns:
+        todo(todo_pb2.Todo object): returns a todo object with given id
+            returns a empty todo object if id not found in the database
+
+    Raises:
+        sqlalchemy.orm.exc.NoResultFound: If no todo object is found with given id
+    """
     try:
         get_todo_ = session.query(Todo).filter(Todo.id == request.id).one()
         todo = todo_pb2.Todo(
@@ -51,6 +83,16 @@ def get_todo(request, context):
 
 
 def add_todo(request, context):
+    """
+    Adds a todo to database
+
+    Args:
+        request(todo_pb2.Todo object): for getting id
+        context(grpc.ServicerContext): for setting error code and details
+
+    Returns:
+        todo(todo_pb2.Empty object): returns a todo_pb2.Empty object
+    """
     if len(request.content) > 200:
         msg = "Todo cannot be morethan 200 characters"
         context.set_details(msg)
@@ -63,6 +105,19 @@ def add_todo(request, context):
 
 
 def edit_todo(request, context):
+    """
+    Edits a todo based on the id of the todo
+
+    Args:
+        request(todo_pb2.Todo object): for getting id
+        context(grpc.ServicerContext): for setting error code and details
+
+    Returns:
+        todo(todo_pb2.Empty object): returns a todo_pb2.Empty object
+
+    Raises:
+        sqlalchemy.orm.exc.NoResultFound: If no todo object is found with given id
+    """
     if len(request.content) > 200:
         msg = "Todo cannot be morethan 200 characters"
         context.set_details(msg)
@@ -83,6 +138,16 @@ def edit_todo(request, context):
 
 
 def remove_todo(request, context):
+    """
+    Edits a todo based on the id of the todo
+
+    Args:
+        request(todo_pb2.Todo object): for getting id
+        context(grpc.ServicerContext): for setting error code and details
+
+    Raises:
+        sqlalchemy.orm.exc.NoResultFound: If no todo object is found with given id
+    """
     try:
         todo_to_delete = session.query(Todo).filter(Todo.id == request.id).one()
         session.delete(todo_to_delete)

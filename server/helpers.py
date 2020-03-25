@@ -1,5 +1,9 @@
 from database import todo
 
+"""
+Helper functions for server.py
+"""
+
 
 def list_all_todos():
     all_todos = todo.list_all_todos()
