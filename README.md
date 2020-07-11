@@ -7,8 +7,5 @@ A todo app in grpc with the following features:
 - Update status of todo
 
 
-link 
-
-[this subtext](server/example.md)
-
-
+link <br/>
+[example](server/example.md)
